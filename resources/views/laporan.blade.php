@@ -66,7 +66,6 @@
 	            </div>
 	        </div>
 	        <div class="hidden md:block mx-4"></div>
-
 	        <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
 	            <div class="relative w-56 mx-auto">
 	            	<div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600"> 
@@ -75,6 +74,12 @@
 	            	<form action="/laporan" method="get">
 	            		<input name="search_tgl" type="text" class="datepicker input pl-12 border">
 	            	</form>
+	         	</div> 
+	        </div>
+	        <div class="hidden md:block mx-4"></div>
+	        <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+	            <div class="relative mx-auto">
+	            	<a href="/laporanPDF" class="button mr-auto text-white bg-theme-1 shadow-md mr-2">Unduh PDF</a>
 	         	</div> 
 	        </div>
 	    </div>

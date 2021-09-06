@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use DB;
+use PDF;
+use App\Models\Absensi;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -32,6 +34,18 @@ class LaporanController extends Controller
         }
         
         return view('laporan',compact('data_absen'));
+    }
+
+    public function laporanPDF(Request $request) 
+    {
+        $data_absen = DB::table('absensis')
+            ->join('users','absensis.user_id','=','users.id')
+            ->orderBy('tgl','desc')
+            ->get();
+
+        $lapPDF = PDF::loadView('laporanPDF',compact('data_absen'));
+
+        return $lapPDF->download('Laporan Absensi.pdf');
     }
 
 }

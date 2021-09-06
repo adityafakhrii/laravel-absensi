@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Absensi;
 use Auth;
 use DB;
+use PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -41,12 +42,14 @@ class DashboardController extends Controller
                 ->join('users','absensis.user_id','=','users.id')
                 ->where('users.nik', 'like','%'.$search.'%')
                 ->where('tgl','=', $date)
+                ->orderBy('tgl','desc')
                 ->get();
 
         }else{
             $data_absen = DB::table('absensis')
                 ->join('users','absensis.user_id','=','users.id')
                 ->where('tgl','=', $date)
+                ->orderBy('tgl','desc')
                 ->get();
         }
 
@@ -99,22 +102,18 @@ class DashboardController extends Controller
         return $request->all();
     }
 
-    // public function absenout(Request $request){
+    public function laporanPDFharian(Request $request) 
+    {   
+        $date = date("d-m-Y");
+        $data_absen = DB::table('absensis')
+            ->join('users','absensis.user_id','=','users.id')
+            ->where('tgl','=', $date)
+            ->orderBy('tgl','desc')
+            ->get();
 
-    //     $this->timeZone('Asia/Jakarta');
-    //     $user_id = Auth::user()->id;
-    //     $date = date("Y-m-d"); // 2017-02-01
-    //     $time = date("H:i:s"); // 12:31:20
+        $lapPDF = PDF::loadView('laporanPDFharian',compact('data_absen'));
 
-    //     if (isset($request->keluar) == NULL) {
-    //         Absensi::where(['tgl' => $date, 'user_id' => $user_id])
-    //             ->update([
-    //                 'keluar' => $time,
-    //                 'updated_at' => Carbon::now()
-    //             ]);
-    //         return redirect()->back();
-    //     }
+        return $lapPDF->download('Laporan Absensi Tanggal '. $date.'.pdf');
+    }
 
-    //     return $request->all();
-    // }
 }

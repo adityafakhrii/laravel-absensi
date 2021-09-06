@@ -90,8 +90,8 @@
 	            	@forelse($data_absen as $absen)
                         <tr>
                             <td class="text-center">{{$absen->tgl}}</td>
-                            <td class="text-center">{{$absen->user->nik}}</td>
-                            <td class="text-center">{{$absen->user->nama}}</td>
+                            <td class="text-center">{{$absen->nik}}</td>
+                            <td class="text-center">{{$absen->nama}}</td>
 		                    <td class="text-center">{{$absen->masuk}}</td>
 		                    <td class="text-center">{{$absen->keluar}}</td>
 		                    <td class="text-center">{{$absen->status}}</td>
@@ -121,6 +121,12 @@
 		                <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i> 
 	            	</form>
 	            </div>
+	        </div>
+	        <div class="hidden md:block mx-4"></div>
+	        <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+	            <div class="relative mx-auto">
+	            	<a href="/laporanPDFharian" class="button mr-auto text-white bg-theme-1 shadow-md mr-2">Unduh PDF</a>
+	         	</div> 
 	        </div>
 	    </div>
 	    <!-- BEGIN: Data List -->

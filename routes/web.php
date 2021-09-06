@@ -33,7 +33,8 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function() {
     Route::get('/data-karyawan/hapus/{id}', 'KaryawanController@destroy');
 
     Route::get('/laporan', 'LaporanController@index');
-
+    Route::get('/laporanPDF', 'LaporanController@laporanPDF');
+    Route::get('/laporanPDFharian', 'DashboardController@laporanPDFharian');
 });
 
 Route::group(['middleware' => ['auth','checkRole:admin,user']], function() {
